@@ -19,6 +19,9 @@ RUN git clone https://github.com/miroenev/rapids
 # enables demo of ETL with RAPIDS and model building with DL-framework [ optional extension ]
 RUN source activate $CONDA_ENV && conda install -y -c pytorch pytorch    
 
+RUN whoami
+RUN pwd
+
 EXPOSE 8888
 
 WORKDIR /
