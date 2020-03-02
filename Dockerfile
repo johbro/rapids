@@ -26,11 +26,11 @@ RUN source activate $CONDA_ENV && conda install -y -c pytorch pytorch
 RUN whoami
 RUN pwd
 RUN chown -R nvidia:nvidia /rapids
-EXPOSE 8888
 
 USER nvidia
 
 WORKDIR /rapids
 
+EXPOSE 8888
 # the runtime RAPIDS container automatically launches a Jupyter Lab instances on port 8888
- CMD ["bash", "-c", "source activate $CONDA_ENV && jupyter lab --no-browser --ip=0.0.0.0 --NotebookApp.token=''"]
+CMD ["bash", "-c", "pkill jupyter && source activate $CONDA_ENV && jupyter lab --no-browser --ip=0.0.0.0 --NotebookApp.token=''"]
