@@ -6,6 +6,10 @@ RUN source activate $CONDA_ENV && \
     apt-get update && \
     apt-get install -y screen unzip git vim htop font-manager && \
     rm -rf /var/lib/apt/*
+RUN groupadd -r nvidia
+RUN useradd -r -g nvidia nvidia
+
+USER nvidia
 
 RUN source activate $CONDA_ENV && jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
@@ -27,4 +31,4 @@ EXPOSE 8888
 WORKDIR /
 
 # the runtime RAPIDS container automatically launches a Jupyter Lab instances on port 8888
-# CMD ["bash", "-c", "source activate $CONDA_ENV && jupyter lab --no-browser --ip=0.0.0.0 --allow-root --NotebookApp.token=''"]
+ CMD ["bash", "-c", "source activate $CONDA_ENV && jupyter lab --no-browser --ip=0.0.0.0 --NotebookApp.token=''"]
