@@ -7,7 +7,7 @@ RUN source activate $CONDA_ENV && \
     apt-get install -y screen unzip git vim htop font-manager && \
     rm -rf /var/lib/apt/*
 RUN groupadd -r nvidia
-RUN useradd -r -m -d /rapids -g nvidia nvidia
+RUN useradd -r -d /rapids -g nvidia nvidia
 
 RUN chmod -R 777 /rapids
 
@@ -25,7 +25,7 @@ RUN source activate $CONDA_ENV && conda install -y -c pytorch pytorch
 
 RUN whoami
 RUN pwd
-
+RUN chown -R nvidia:nvidia /rapids
 EXPOSE 8888
 
 USER nvidia
