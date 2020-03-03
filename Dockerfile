@@ -28,7 +28,7 @@ RUN pwd
 RUN chown -R nvidia:nvidia /rapids
 
 USER nvidia
-
+ENV CONDA_ENV rapids
 WORKDIR /rapids
 
 EXPOSE 8888
